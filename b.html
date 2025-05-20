@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Calculatrice</title>
+    <style>
+      body {
+        font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+        background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+        min-height: 100vh;
+        margin: 0;
+        padding: 20px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+      }
+
+      #box {
+        width: 300px;
+        height: 80px;
+        background-color: #ffffff;
+        font-size: 32px;
+        border-radius: 10px;
+        margin-bottom: 20px;
+        padding: 10px;
+        text-align: right;
+        box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+        border: 1px solid #e0e0e0;
+        overflow: hidden;
+        display: flex;
+        align-items: center;
+        justify-content: flex-end;
+      }
+
+      #b {
+        width: 60px;
+        height: 60px;
+        background-color: #ffffff;
+        border: none;
+        border-radius: 50%;
+        margin: 5px;
+        font-size: 24px;
+        cursor: pointer;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        transition: all 0.3s ease;
+        color: #2c3e50;
+      }
+
+      #b:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+        background-color: #f8f9fa;
+      }
+
+      #signes {
+        width: 60px;
+        height: 60px;
+        background-color: #4caf50;
+        border: none;
+        border-radius: 50%;
+        margin: 5px;
+        font-size: 24px;
+        cursor: pointer;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        transition: all 0.3s ease;
+        color: white;
+      }
+
+      #signes:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+        background-color: #45a049;
+      }
+
+      .calculContenaire {
+        background: rgba(255, 255, 255, 0.9);
+        padding: 20px;
+        border-radius: 20px;
+        box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+      }
+
+      .buttonsContenaire {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        max-width: 300px;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="calculContenaire">
+      <div id="box"></div>
+      <div class="buttonsContenaire">
+        <script>
+          const but = document.querySelector(".buttonsContenaire");
+          const box = document.getElementById("box");
+          const chiffre = [1, 2, 3, 4, 5, 6, 7, 8, 9, 0];
+          const signe = ["+ ", " - ", " / ", " * ",'.'];
+          const assignation = ["="];
+          function operetion() {
+            for (let h of chiffre) {
+              const buttonC = document.createElement("button");
+              buttonC.id = "b";
+              buttonC.textContent = h;
+              buttonC.addEventListener("click", () => {
+                box.innerText += h;
+              });
+              document.querySelector(".buttonsContenaire").appendChild(buttonC);
+            }
+          }
+
+          function operateur() {
+            for (let op of signe) {
+              const buttonSigne = document.createElement("button");
+              buttonSigne.id = "signes";
+              buttonSigne.textContent = op;
+              buttonSigne.addEventListener("click", () => {
+                box.innerText += op;
+              
+              });
+
+              but.appendChild(buttonSigne);
+            }
+          }
+          const buttonegale = document.createElement("button");
+                buttonegale.id = "signes";
+                buttonegale.textContent = assignation[0];
+                buttonegale.addEventListener("click", () => {
+                  box.innerText = eval(box.textContent);
+                });
+                but.appendChild(buttonegale);
+          operateur();
+          operetion();
+        </script>
+      </div>
+    </div>
+  </body>
+</html>
